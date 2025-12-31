@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-api
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nodejs-api
+  template:
+    metadata:
+      labels:
+        app: nodejs-api
+    spec:
+      containers:
+        - name: nodejs-api
+          image: finapp-api:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
